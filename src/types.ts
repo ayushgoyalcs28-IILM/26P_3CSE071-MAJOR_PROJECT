@@ -1,0 +1,9 @@
+export type Role = 'student' | 'admin';
+export type FileStatus = 'active' | 'trashed';
+export type FileItem = { id: string; name: string; size: number; mime: string; folderId: string | null; starred: boolean; status: FileStatus; createdAt: string; updatedAt: string; owner: string; origin: 'sample' | 'local'; fragmentCount: number };
+export type Folder = { id: string; name: string; createdAt: string };
+export type Share = { id: string; fileId: string; recipient: string; permission: 'view'|'download'; createdAt: string; active: boolean };
+export type ActivityType = 'UPLOAD'|'SHARE'|'REVOKE'|'DELETE'|'RESTORE'|'RENAME'|'FOLDER'|'MOVE'|'DOWNLOAD'|'ADMIN';
+export type Activity = { id: string; type: ActivityType; title: string; detail: string; createdAt: string; txId: string; actor: string };
+export type StorageNode = { id: string; name: string; label: string; provider: string; used: number; capacity: number; status: 'online'|'maintenance' };
+export type VaultState = { files: FileItem[]; folders: Folder[]; shares: Share[]; activities: Activity[]; nodes: StorageNode[] };

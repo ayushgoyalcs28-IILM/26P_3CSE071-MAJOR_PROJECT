@@ -1,0 +1,5 @@
+import { Link } from 'react-router-dom';
+export function Brand({light=false,link='/'}:{light?:boolean;link?:string}){return <Link to={link} className={`brandmark group inline-flex items-center gap-2.5 shrink-0 ${light?'text-white':'text-navy'}`} aria-label="VaultChain home">
+<span className="brand-icon"><svg viewBox="0 0 36 36" width="32" height="32" aria-hidden="true"><defs><linearGradient id="brandgrad" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#4f9aff"/><stop offset="1" stopColor="#2155f6"/></linearGradient></defs><rect x="2" y="2" width="32" height="32" rx="10" fill="url(#brandgrad)"/><path d="M12 12.3L18 24.5L24 12.3M10.5 12.5L18 8.5L25.5 12.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/><circle cx="18" cy="25" r="2" fill="#aeeeff"/></svg></span>
+<span className="text-[21px] font-extrabold tracking-[-.075em]">vault<span className={light?'text-[#89baff]':'text-royal'}>chain</span><span className="text-[15px] align-top ml-[1px]">.</span></span>
+</Link>}
