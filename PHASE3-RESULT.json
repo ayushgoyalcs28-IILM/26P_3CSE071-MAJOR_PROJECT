@@ -1,0 +1,342 @@
+{
+  "project": "VaultChain | Phase III \u2014 Distributed encrypted storage subsystem",
+  "scope": "In-memory logical nodes and modeled metadata transitions; AES-256-GCM encrypted test inputs",
+  "methods": "Non-systematic Reed-Solomon-style linear code in GF(256), n=6, preferred k=4",
+  "environment": {
+    "python": "3.13.5",
+    "operating_system": "Linux 6.18.57",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpu_visible": 5,
+    "ram_gib": 5.81,
+    "cryptography_version": "46.0.4"
+  },
+  "correctness": {
+    "executed": 26,
+    "passed": 26,
+    "failed": 0,
+    "errors": 0,
+    "all_passed": true
+  },
+  "comparison": {
+    "encrypted_input_bytes": 46080,
+    "document_count": 12,
+    "sizes_bytes": [
+      1024,
+      2048,
+      4096,
+      8192,
+      1024,
+      2048,
+      4096,
+      8192,
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "fixed_cohort": {
+      "coded_bytes": 147456,
+      "amplification": 3.2
+    },
+    "size_sorted_cohort": {
+      "coded_bytes": 86016,
+      "amplification": 1.866667
+    },
+    "random_cohort": {
+      "trials": 200,
+      "mean_amplification": 2.769333,
+      "sd_amplification": 0.320444
+    },
+    "adaptive_mixed": {
+      "coded_bytes": 69120,
+      "amplification": 1.5,
+      "groups": 16,
+      "fragment_instances": 96,
+      "mixed_group_count": 16,
+      "all_real_ciphertext": true,
+      "node_occupancy_bytes": {
+        "0": 5760,
+        "1": 5760,
+        "2": 5760,
+        "3": 5760,
+        "4": 5760,
+        "5": 5760,
+        "6": 5760,
+        "7": 5760,
+        "8": 5760,
+        "9": 5760,
+        "10": 5760,
+        "11": 5760
+      },
+      "sample_read": {
+        "groups_touched": 2,
+        "coded_bytes_read": 4096,
+        "ciphertext_bytes": 1024,
+        "read_amplification": 4.0
+      }
+    },
+    "independent_rs": {
+      "coded_bytes": 69120,
+      "amplification": 1.5,
+      "groups": 24,
+      "fragment_instances": 144,
+      "sample_nonsystematic_read_amplification": 1.0
+    },
+    "threefold_replication": {
+      "coded_bytes": 138240,
+      "amplification": 3.0,
+      "note": "3 complete copies; does not satisfy every-node per-document coverage on 12 nodes"
+    },
+    "derived": {
+      "adaptive_vs_fixed_reduction_pct": 53.125,
+      "adaptive_vs_sorted_reduction_pct": 19.643,
+      "adaptive_vs_independent_reduction_pct": 0.0,
+      "adaptive_vs_independent_fragment_reduction_pct": 33.333
+    }
+  },
+  "failure_experiment_12_nodes": {
+    "node_count": 12,
+    "tested_failure_pairs": 66,
+    "successful_pair_recoveries": 66,
+    "failed_pair_recoveries": 0,
+    "failure_examples": [],
+    "active_groups": 16,
+    "logical_fragments": 96,
+    "bytes_per_node_min": 720,
+    "bytes_per_node_max": 720,
+    "coded_bytes_total": 8640,
+    "input_ciphertext_bytes": 5760
+  },
+  "membership_experiment_13_nodes": {
+    "node_count": 13,
+    "tested_failure_pairs": 78,
+    "successful_pair_recoveries": 78,
+    "failed_pair_recoveries": 0,
+    "failure_examples": [],
+    "active_groups": 39,
+    "logical_fragments": 234,
+    "bytes_per_node_min": 72,
+    "bytes_per_node_max": 72,
+    "coded_bytes_total": 936,
+    "input_ciphertext_bytes": 624
+  },
+  "benchmarks": [
+    {
+      "ciphertext_bytes_per_document": 4096,
+      "document_count": 12,
+      "total_ciphertext_bytes": 49152,
+      "groups": 6,
+      "fragment_instances": 36,
+      "encoded_payload_bytes": 73728,
+      "encoded_payload_ratio": 1.5,
+      "single_doc_read_amplification": 4.0,
+      "repair_download_bytes": 24576,
+      "repair_upload_bytes": 6144,
+      "repaired_fragments": 3,
+      "timings": {
+        "coding_build_ms": {
+          "runs": 5,
+          "mean_ms": 22.088,
+          "median_ms": 22.021,
+          "stdev_ms": 1.663,
+          "min_ms": 20.405,
+          "max_ms": 24.793,
+          "p95_nearest_rank_ms": 24.793
+        },
+        "verified_transition_ms": {
+          "runs": 5,
+          "mean_ms": 14.723,
+          "median_ms": 14.72,
+          "stdev_ms": 0.581,
+          "min_ms": 13.909,
+          "max_ms": 15.552,
+          "p95_nearest_rank_ms": 15.552
+        },
+        "state_commit_ms": {
+          "runs": 5,
+          "mean_ms": 0.208,
+          "median_ms": 0.2,
+          "stdev_ms": 0.015,
+          "min_ms": 0.197,
+          "max_ms": 0.232,
+          "p95_nearest_rank_ms": 0.232
+        },
+        "single_doc_read_ms": {
+          "runs": 5,
+          "mean_ms": 1.297,
+          "median_ms": 1.303,
+          "stdev_ms": 0.084,
+          "min_ms": 1.204,
+          "max_ms": 1.383,
+          "p95_nearest_rank_ms": 1.383
+        },
+        "repair_with_verification_ms": {
+          "runs": 5,
+          "mean_ms": 23.573,
+          "median_ms": 23.58,
+          "stdev_ms": 0.257,
+          "min_ms": 23.334,
+          "max_ms": 23.985,
+          "p95_nearest_rank_ms": 23.985
+        },
+        "aes256_gcm_encrypt_12_ms": {
+          "runs": 5,
+          "mean_ms": 0.106,
+          "median_ms": 0.11,
+          "stdev_ms": 0.029,
+          "min_ms": 0.061,
+          "max_ms": 0.137,
+          "p95_nearest_rank_ms": 0.137
+        }
+      },
+      "timing_scope": "coding_build excludes verify/commit; repair includes reconstruct+verify+commit"
+    },
+    {
+      "ciphertext_bytes_per_document": 65536,
+      "document_count": 12,
+      "total_ciphertext_bytes": 786432,
+      "groups": 6,
+      "fragment_instances": 36,
+      "encoded_payload_bytes": 1179648,
+      "encoded_payload_ratio": 1.5,
+      "single_doc_read_amplification": 4.0,
+      "repair_download_bytes": 393216,
+      "repair_upload_bytes": 98304,
+      "repaired_fragments": 3,
+      "timings": {
+        "coding_build_ms": {
+          "runs": 5,
+          "mean_ms": 339.648,
+          "median_ms": 341.816,
+          "stdev_ms": 8.079,
+          "min_ms": 330.629,
+          "max_ms": 349.269,
+          "p95_nearest_rank_ms": 349.269
+        },
+        "verified_transition_ms": {
+          "runs": 5,
+          "mean_ms": 216.28,
+          "median_ms": 215.224,
+          "stdev_ms": 3.647,
+          "min_ms": 213.61,
+          "max_ms": 222.546,
+          "p95_nearest_rank_ms": 222.546
+        },
+        "state_commit_ms": {
+          "runs": 5,
+          "mean_ms": 1.491,
+          "median_ms": 1.462,
+          "stdev_ms": 0.054,
+          "min_ms": 1.446,
+          "max_ms": 1.551,
+          "p95_nearest_rank_ms": 1.551
+        },
+        "single_doc_read_ms": {
+          "runs": 5,
+          "mean_ms": 18.935,
+          "median_ms": 18.898,
+          "stdev_ms": 0.149,
+          "min_ms": 18.814,
+          "max_ms": 19.174,
+          "p95_nearest_rank_ms": 19.174
+        },
+        "repair_with_verification_ms": {
+          "runs": 5,
+          "mean_ms": 358.766,
+          "median_ms": 357.571,
+          "stdev_ms": 8.094,
+          "min_ms": 351.58,
+          "max_ms": 370.961,
+          "p95_nearest_rank_ms": 370.961
+        },
+        "aes256_gcm_encrypt_12_ms": {
+          "runs": 5,
+          "mean_ms": 0.208,
+          "median_ms": 0.211,
+          "stdev_ms": 0.018,
+          "min_ms": 0.178,
+          "max_ms": 0.224,
+          "p95_nearest_rank_ms": 0.224
+        }
+      },
+      "timing_scope": "coding_build excludes verify/commit; repair includes reconstruct+verify+commit"
+    },
+    {
+      "ciphertext_bytes_per_document": 262144,
+      "document_count": 12,
+      "total_ciphertext_bytes": 3145728,
+      "groups": 6,
+      "fragment_instances": 36,
+      "encoded_payload_bytes": 4718592,
+      "encoded_payload_ratio": 1.5,
+      "single_doc_read_amplification": 4.0,
+      "repair_download_bytes": 1572864,
+      "repair_upload_bytes": 393216,
+      "repaired_fragments": 3,
+      "timings": {
+        "coding_build_ms": {
+          "runs": 5,
+          "mean_ms": 1353.102,
+          "median_ms": 1355.304,
+          "stdev_ms": 23.052,
+          "min_ms": 1318.254,
+          "max_ms": 1378.383,
+          "p95_nearest_rank_ms": 1378.383
+        },
+        "verified_transition_ms": {
+          "runs": 5,
+          "mean_ms": 853.518,
+          "median_ms": 853.882,
+          "stdev_ms": 9.604,
+          "min_ms": 844.113,
+          "max_ms": 867.614,
+          "p95_nearest_rank_ms": 867.614
+        },
+        "state_commit_ms": {
+          "runs": 5,
+          "mean_ms": 5.658,
+          "median_ms": 5.74,
+          "stdev_ms": 0.16,
+          "min_ms": 5.456,
+          "max_ms": 5.828,
+          "p95_nearest_rank_ms": 5.828
+        },
+        "single_doc_read_ms": {
+          "runs": 5,
+          "mean_ms": 75.192,
+          "median_ms": 74.807,
+          "stdev_ms": 1.356,
+          "min_ms": 73.833,
+          "max_ms": 77.287,
+          "p95_nearest_rank_ms": 77.287
+        },
+        "repair_with_verification_ms": {
+          "runs": 5,
+          "mean_ms": 1447.802,
+          "median_ms": 1424.782,
+          "stdev_ms": 60.493,
+          "min_ms": 1399.251,
+          "max_ms": 1552.931,
+          "p95_nearest_rank_ms": 1552.931
+        },
+        "aes256_gcm_encrypt_12_ms": {
+          "runs": 5,
+          "mean_ms": 0.741,
+          "median_ms": 0.587,
+          "stdev_ms": 0.407,
+          "min_ms": 0.514,
+          "max_ms": 1.466,
+          "p95_nearest_rank_ms": 1.466
+        }
+      },
+      "timing_scope": "coding_build excludes verify/commit; repair includes reconstruct+verify+commit"
+    }
+  ],
+  "memory_probe": {
+    "ciphertext_bytes_per_doc": 65536,
+    "python_tracemalloc_peak_bytes": 1416710,
+    "note": "peak Python-traced allocation during build+verify+commit; NOT total process RSS"
+  },
+  "evidence_note": "Failure counts and node occupancy generated by executed loops, not literal result assignments.",
+  "research_scope": "No actual blockchain execution or Google Drive I/O; no end-to-end system integration claim."
+}
